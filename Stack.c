@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct no
 {
@@ -7,25 +8,25 @@ typedef struct no
 } NO;
 
 //função  de empilhar ou push
-
+int novo_dado(){
+    int dado_pedido;
+    printf("\nInsira um valor\n");
+    scanf("%d",&dado_pedido);
+    return dado_pedido;
+}
 
 NO* empilhar(NO *topo){
     NO *novo = malloc(sizeof(NO)); //alocar espaço na memoria
     if (novo){
         novo->dado=novo_dado();
-        novo->dado=topo;
+        novo->proximo=topo;
         return novo;
     }else{
-        print("\n Erro ao alocar memoria");
+        printf("\n Erro ao alocar memoria");
     }
 }
 
-int novo_dado(){
-    int dado_pedido;
-    print("\nInsira um valor\n");
-    scanf("%d",&dado_pedido);
-    return dado_pedido;
-}
+
 
 //função desempilhar ou pop
 
@@ -40,10 +41,18 @@ NO* desempilhar(NO **topo){
     }
 }
 
+void imprimir(NO *topo){
+    printf("\n Pilha: \n");
+    while(topo){
+        printf("\n %d", topo->dado);
+        topo=topo->proximo;
+    }
+    
+}
 
 int main(int argc, char *argv[])
 {
-    NO *topo = NULL;
+    NO *topo = NULL, *remover;
     int opcao;
     do
     {
@@ -56,9 +65,15 @@ int main(int argc, char *argv[])
         topo=empilhar(topo);
             break;
         case 2:
-
+        remover=desempilhar(&topo);
+        if(remover){
+            printf("\n No removido\n");
+        }else{
+            printf("\n Sem no para remover\n");
+        }
             break;
         case 3:
+        imprimir(topo);
             break;
 
         default:
