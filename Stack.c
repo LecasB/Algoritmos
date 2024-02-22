@@ -10,7 +10,7 @@ typedef struct no
 //função  de empilhar ou push
 int novo_dado(){
     int dado_pedido;
-    printf("\nInsira um valor\n");
+    printf("\no um valor\n");
     scanf("%d",&dado_pedido);
     return dado_pedido;
 }
